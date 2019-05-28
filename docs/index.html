@@ -1,49 +1,466 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>React Intermediate</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/black.css" />
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="intro">
+          <h1>React JS</h1>
+          <p>INTERMEDIATE</p>
+        </section>
 
-		<script src="js/reveal.js"></script>
+        <section id="agenda">
+          <h1>Agenda</h1>
+          <ul>
+            <li>Recap</li>
+            <li>Lifecycle</li>
+            <li>Error Boundaries</li>
+            <li>High Order Components</li>
+            <li>Render Props</li>
+          </ul>
+        </section>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+        <section id="recap">
+          <section>
+            <h1>Recap</h1>
+            <p>Last training we talked about:</p>
+            <ul>
+              <li>ES6</li>
+              <li>React</li>
+              <li>Redux</li>
+              <li>Routes</li>
+              <li>Networking</li>
+            </ul>
+            <div>
+              <a href="https://ac-pdias.gitlab.io/react-basics/"
+                >https://ac-pdias.gitlab.io/react-basics/</a
+              >
+            </div>
+          </section>
+
+          <section>
+            <h2>ES6</h2>
+            <ul>
+              <li>Variables</li>
+              <li>Arrow functions</li>
+              <li>String interpolation</li>
+              <li>Destructuring</li>
+              <li>Modules</li>
+              <li>Classes</li>
+            </ul>
+          </section>
+          <section>
+            <h2>React</h2>
+            <ul>
+              <li>JSX</li>
+              <li>Components</li>
+              <li>Props and state</li>
+              <li>Reconciliation</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Redux</h2>
+            <ul>
+              <li>Flux architecture</li>
+              <li>Store</li>
+              <li>Action</li>
+              <li>Reducer</li>
+              <li>connect()</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Routes</h2>
+            <ul>
+              <li>Concepts</li>
+              <li>React Router</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Networking</h2>
+            <ul>
+              <li>Best practices</li>
+              <li>Axios and Fetch</li>
+            </ul>
+          </section>
+        </section>
+
+        <section id="lifecycle">
+          <section>
+            <h1>Lifecycle</h1>
+            <p>
+              Each component has several “lifecycle methods” that you can
+              override to run code at particular times in the process.
+            </p>
+            <p>
+              We will not cover legacy lifecycle methods.
+            </p>
+          </section>
+
+          <section>
+            <h2>Mounting</h2>
+            <ul>
+              <li><code>constructor()</code></li>
+              <li><code>static getDerivedStateFromProps()</code></li>
+              <li><code>render()</code></li>
+              <li><code>componentDidMount()</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Updating</h2>
+            <ul>
+              <li><code>static getDerivedStateFromProps()</code></li>
+              <li><code>shouldComponentUpdate()</code></li>
+              <li><code>render()</code></li>
+              <li><code>getSnapshotBeforeUpdate()</code></li>
+              <li><code>componentDidUpdate()</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Unmounting</h2>
+            <ul>
+              <li><code>componentWillUnmount()</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Error Handling</h2>
+            <ul>
+              <li><code>static getDerivedStateFromError()</code></li>
+              <li><code>componentDidCatch()</code></li>
+            </ul>
+            <p>This leads us to the next section...</p>
+          </section>
+        </section>
+
+        <section id="error-boundaries">
+          <section>
+            <h1>Error Boundaries</h1>
+            <p>
+              Error boundaries are React components that catch JavaScript errors
+              anywhere in their child component tree, log those errors, and
+              display a fallback UI instead of the component tree that crashed.
+            </p>
+            <p>
+              Error boundaries catch errors during rendering, in lifecycle
+              methods, and in constructors of the whole tree below them.
+            </p>
+          </section>
+          <section>
+            <p>
+              A class component becomes an error boundary if it defines either
+              (or both) of the lifecycle methods
+              <code>static getDerivedStateFromError()</code> or
+              <code>componentDidCatch()</code>. Updating state from these
+              lifecycles lets you capture an unhandled JavaScript error in the
+              below tree and display a fallback UI.
+            </p>
+          </section>
+          <section>
+            <p>
+              Error boundaries were introduced by React 16. Before that, any
+              JavaScript errors inside components used to corrupt React's
+              internal state and cause it to emit cryptic errors on next
+              renders.
+            </p>
+            <p>
+              That would cause the app to break and user could not interact with
+              it anymore.
+            </p>
+          </section>
+          <section>
+            <h2>Notes</h2>
+            <ul>
+              <li>
+                Only use error boundaries for recovering from unexpected
+                exceptions;
+                <b style="color: red;">don’t try to use them for control flow</b
+                >.
+              </li>
+              <li>
+                Error boundaries only catch errors in the components below them
+                in the tree. An error boundary can’t catch an error within
+                itself.
+              </li>
+              <li>
+                Error boundaries do not work for Server Side Rendering (SSR)
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code data-trim data-line-numbers style="max-height: initial;">
+            class ErrorBoundary extends React.Component {
+              constructor(props) {
+                super(props);
+                this.state = { hasError: false };
+              }
+            
+              static getDerivedStateFromError(error) {
+                return { hasError: true };
+              }
+            
+              componentDidCatch(error, info) {
+                logComponentStackToMyService(info.componentStack);
+              }
+            
+              render() {
+                if (this.state.hasError) {
+                  return <h1>Something went wrong.</h1>;
+                }
+            
+                return this.props.children; 
+              }
+            }
+            </code></pre>
+          </section>
+
+          <section>
+            <pre><code data-trim data-line-numbers>
+            render(){
+              return (
+                < ErrorBoundary >
+                  < MyComponent />
+                < /ErrorBoundary >
+              )
+            }
+            </code></pre>
+          </section>
+        </section>
+
+        <section id="hoc">
+          <section>
+            <h1>High Order Components</h1>
+          </section>
+
+          <section>
+            <h2>What?</h2>
+            <p>
+              Concretely, a higher-order component is a function that takes a
+              component and returns a new component.
+            </p>
+            <p>
+              Whereas a component transforms props into UI, a higher-order
+              component transforms a component into another component.
+            </p>
+          </section>
+
+          <section>
+            <h2>Why?</h2>
+            <p>
+              HOCs creates an abstraction that allows us to define a logic in a
+              single place and share it across many components.
+            </p>
+            <p>
+              DRY principle!
+            </p>
+          </section>
+
+          <section>
+            <h2>How?</h2>
+            <p>
+              Picture this: we have a <code>Sidebar</code> component and two
+              components that use it: <code>Menu</code> and
+              <code>Profile</code>.
+            </p>
+          </section>
+
+          <section>
+            <pre><code data-trim data-line-numbers>
+              // Sidebar.jsx
+              class Sidebar extends React.Component {
+                render() {
+                  const { children } = this.props
+                  return (
+                    <div>
+                      {children}
+                    </div>
+                  )
+                }
+              }
+            </code></pre>
+          </section>
+
+          <section>
+            <pre><code data-trim data-line-numbers style="max-height: initial;">
+              // Menu.jsx
+              class Menu extends React.Component {
+                state = { showSidebar: false }
+                openSidebar = () => {
+                  this.setState({ showSidebar: true })
+                }
+                render() {
+                  const { showSidebar } = this.state
+                  return (
+                    <div>
+                      {showSidebar && (
+                        <Sidebar>
+                          <ul>
+                            <li>Home</li>
+                            <li>About</li>
+                          </ul>
+                        </Sidebar>
+                      )}
+                      <button onClick={this.openSidebar}>Open Menu</button>
+                    </div>
+                  )
+                }
+              }
+            </code></pre>
+          </section>
+
+          <section>
+            <pre><code data-trim data-line-numbers style="max-height: initial;">
+              // Profile.jsx
+              class Profile extends React.Component {
+                state = { showSidebar: false }
+                openSidebar = () => {
+                  this.setState({ showSidebar: true })
+                }
+                render() {
+                  const { showSidebar } = this.state
+                  return (
+                    <div>
+                      {showSidebar && (
+                        <Sidebar>
+                          <div>Name: Logged User Name</div>
+                          <div>Email: Logged User Email</div>
+                        </Sidebar>
+                      )}
+                      <button onClick={this.openSidebar}>Open Profile</button>
+                    </div>
+                  )
+                }
+              }
+            </code></pre>
+          </section>
+
+          <section>
+            <p>
+              Do you realize we are writing the same methods for setting the
+              display for side bar?
+            </p>
+            <p>That's the opposite of DRY principle.</p>
+            <p>Let's see how HOCs can solve this for us.</p>
+          </section>
+
+          <section>
+            <pre><code data-trim data-line-numbers style="max-height: initial;">
+            // withSidebarManager.jsx
+            export default function withSidebarManager(BaseComponent) {
+              return class EnhancedComponent extends React.Component {
+                state = { showSidebar: false }
+                openSidebar = () => {
+                  this.setState({ showSidebar: true })
+                }
+                render() {
+                  const { showSidebar } = this.state
+                  return < BaseComponent 
+                          openSidebar={this.openSidebar} 
+                          {...this.props} 
+                        />
+                }
+
+              }
+            }
+            </code></pre>
+          </section>
+
+          <section>
+            <p>Now we can rewrite our components:</p>
+            <pre><code data-trim data-line-numbers style="max-height: initial;">
+              // Profile.jsx
+              class Profile extends React.Component {
+                render() {
+                  const { showSidebar, openSidebar } = this.props
+                  return (
+                    <div>
+                      {showSidebar && (
+                        <Sidebar>
+                          <div>Name: Logged User Name</div>
+                          <div>Email: Logged User Email</div>
+                        </Sidebar>
+                      )}
+                      <button onClick={openSidebar}>Open Profile</button>
+                    </div>
+                  )
+                }
+              }
+              export default withSidebarManager(Profile)
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Render Props</h1>
+          </section>
+
+          <section>
+            <h2>What?</h2>
+            <p>
+              A render prop is a function prop that a component uses to know
+              what to render.
+            </p>
+          </section>
+
+          <section>
+            <h2>Why?</h2>
+            <p>
+              Similar to HOCs, a render prop also creates an abstraction that
+              allows us to share the state or behavior across many components.
+            </p>
+            <p>
+              Again: DRY principle!
+            </p>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+      });
+      Reveal.configure({ slideNumber: 'c/t' });
+    </script>
+  </body>
 </html>
